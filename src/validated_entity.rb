@@ -15,23 +15,15 @@ class Book
   private
 
   def validate(title, author_name, publication_date)
-    if
-      !(title.is_a? String) ||
-      title.empty?
-    then
+    if !(title.is_a? String) || title.empty?
       fail ArgumentError, 'Title must be a non-empty string.'
     end
 
-    if
-      !(author_name.is_a? String) ||
-      author_name.empty?
-    then
+    if !(author_name.is_a? String) || author_name.empty?
       fail ArgumentError, 'Author name must be a non-empty string.'
     end
 
-    if
-      !(publication_date.is_a? Date)
-    then
+    if !(publication_date.is_a? Date)
       fail ArgumentError, 'Publication year must be a date'
     end
 
