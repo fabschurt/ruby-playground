@@ -1,10 +1,3 @@
-$LOAD_PATH.prepend(
-  File.join(
-    File.expand_path(File.dirname(__FILE__)),
-    'lib'
-  )
-)
-
 require 'date'
 
 class Book
@@ -51,7 +44,7 @@ class Book
 end
 
 moby_d = Book.new(
-  title: 'Moby D.',
+  title: 'Moby Dick',
   author_name: 'Herman Melville',
   publication_date: Date.new(1810, 10, 30),
 )
