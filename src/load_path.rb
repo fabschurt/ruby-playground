@@ -1,20 +1,14 @@
-$LOAD_PATH.prepend(File.expand_path(File.dirname(__FILE__)))
+require 'minitest/autorun'
 
-require 'test/unit/assertions'
-require 'lib/Character'
-require 'lib/Character/Scout'
-require 'lib/Character/Tank'
+describe 'Modifying the load path' do
+  it 'cannot find a lib class if not made discoverable' do
+    _{ require 'lib/Character/Scout' }.must_raise LoadError
+  end
 
-include Test::Unit::Assertions
+  it 'is able to find lib classes once added to the load path' do
+    $LOAD_PATH.prepend(File.expand_path(File.dirname(__FILE__)))
+    require 'lib/Character/Scout'
 
-assert_raise NotImplementedError do
-  Character.new().fight()
+    _(Scout.new.fight).must_equal 'Farewell…'
+  end
 end
-
-joe = Scout.new()
-jack = Tank.new()
-
-puts <<-BATTLE
-Joe’s fighting: «#{joe.fight()}»
-Jack’s fighting: «#{jack.fight()}»
-BATTLE

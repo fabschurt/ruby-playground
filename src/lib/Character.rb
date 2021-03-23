@@ -1,9 +1,7 @@
 class Character
-  def fight()
+  def fight
     fail NotImplementedError
   end
 
-  def die()
-    'Farewell…'
-  end
+  def die = 'Farewell…'
 end
