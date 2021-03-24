@@ -66,7 +66,7 @@ describe('Function pipelining') do
         .then(&group_words_by_count)
         .then(&cleanup_grouped_words)
         .then(&sort_grouped_words)
-    ).must_equal(expected)
+    ).must_equal expected
   end
 
   it 'can be used with `Proc#>>`' do
@@ -79,6 +79,6 @@ describe('Function pipelining') do
       cleanup_grouped_words >>
       sort_grouped_words
 
-    _(pipeline.call(LOREM)).must_equal(expected)
+    _(pipeline.call(LOREM)).must_equal expected
   end
 end
