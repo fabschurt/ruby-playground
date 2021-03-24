@@ -41,16 +41,16 @@ class Book
   end
 end
 
-describe 'Self-validating entity' do
+describe 'A self-validating entity' do
   subject { Book }
 
-  it 'fails when passing crappy args to constructor' do
+  it 'fails when crappy args are passed to its constructor' do
     _{ subject.new(crap: false) }.must_raise ArgumentError
     _{ subject.new(42, 'Jack London', 3444) }.must_raise ArgumentError
     _{ subject.new('Fight Club', 'Some dude with a weird name', Date.new(1996, 8, 17)) }.must_raise ArgumentError
   end
 
-  it 'builds a self-validated entity' do
+  it 'validates itself upon initialization' do
     book = subject.new(
       title: 'Fahrenheit 451',
       author_name: 'Ray Bradbury',
