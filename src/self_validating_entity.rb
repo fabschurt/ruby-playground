@@ -21,15 +21,15 @@ class Book
   private
 
   def validate(title, author_name, publication_date)
-    if !(title.is_a? String) || title.empty?
+    if !(title.is_a?(String)) || title.empty?
       fail ArgumentError, 'Title must be a non-empty string.'
     end
 
-    if !(author_name.is_a? String) || author_name.empty?
+    if !(author_name.is_a?(String)) || author_name.empty?
       fail ArgumentError, 'Author name must be a non-empty string.'
     end
 
-    if !(publication_date.is_a? Date)
+    if !(publication_date.is_a?(Date))
       fail ArgumentError, 'Publication year must be a date'
     end
 
@@ -42,16 +42,14 @@ class Book
 end
 
 describe 'A self-validating entity' do
-  subject { Book }
-
   it 'fails when crappy args are passed to its constructor' do
-    _{ subject.new(crap: false) }.must_raise ArgumentError
-    _{ subject.new(42, 'Jack London', 3444) }.must_raise ArgumentError
-    _{ subject.new('Fight Club', 'Some dude with a weird name', Date.new(1996, 8, 17)) }.must_raise ArgumentError
+    _{ Book.new(crap: false) }.must_raise ArgumentError
+    _{ Book.new(42, 'Jack London', 3444) }.must_raise ArgumentError
+    _{ Book.new('Fight Club', 'Some dude with a weird name', Date.new(1996, 8, 17)) }.must_raise ArgumentError
   end
 
   it 'validates itself upon initialization' do
-    book = subject.new(
+    book = Book.new(
       title: 'Fahrenheit 451',
       author_name: 'Ray Bradbury',
       publication_date: Date.new(1953, 10, 19),
