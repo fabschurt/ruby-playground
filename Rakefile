@@ -8,5 +8,4 @@ task default: :test
 Rake::TestTask.new do |task|
   task.description = 'Run minitest specs'
   task.test_files = FileList[File.join(SRC_DIR, '*.rb')]
-  task.verbose = true
 end
