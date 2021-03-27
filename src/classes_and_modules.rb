@@ -26,7 +26,7 @@ class Dog
   def cry = 'Bark!'
 end
 
-describe 'The Module class' do
+describe 'The `Module` class' do
   it 'can be reopened (keeping the inheritance chain consistent)' do
     lassie = Dog.new
 
@@ -81,8 +81,8 @@ describe 'The Module class' do
   end
 end
 
-describe 'The Class class' do
-  it 'extends from the Module class' do
+describe 'The `Class` class' do
+  it 'extends from the `Module` class' do
     _(Class.superclass).must_be_same_as Module
   end
 

@@ -56,7 +56,7 @@ describe 'Function pipelining' do
     ],
   }
 
-  it 'can be used with Kernel#then' do
+  it 'can be used with `Kernel#then`' do
     _(
       LOREM
         .then(&extract_words)
@@ -69,7 +69,7 @@ describe 'Function pipelining' do
     ).must_equal expected
   end
 
-  it 'can be used with Proc#>>' do
+  it 'can be used with `Proc#`>>' do
     pipeline =
       extract_words >>
       filter_out_empty_words >>
