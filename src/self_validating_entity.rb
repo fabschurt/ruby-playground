@@ -43,9 +43,9 @@ end
 
 describe 'A self-validating entity' do
   it 'fails when crappy args are passed to its constructor' do
-    _{ Book.new(crap: false) }.must_raise ArgumentError
-    _{ Book.new(42, 'Jack London', 3444) }.must_raise ArgumentError
-    _{ Book.new('Fight Club', 'Some dude with a weird name', Date.new(1996, 8, 17)) }.must_raise ArgumentError
+    expect { Book.new(crap: false) }.must_raise ArgumentError
+    expect { Book.new(42, 'Jack London', 3444) }.must_raise ArgumentError
+    expect { Book.new('Fight Club', 'Some dude with a weird name', Date.new(1996, 8, 17)) }.must_raise ArgumentError
   end
 
   it 'validates itself upon initialization' do
@@ -55,8 +55,8 @@ describe 'A self-validating entity' do
       publication_date: Date.new(1953, 10, 19),
     )
 
-    _(book.title).must_equal 'Fahrenheit 451'
-    _(book.author_name).must_equal 'Ray Bradbury'
-    _(book.publication_year).must_equal 1953
+    expect(book.title).must_equal 'Fahrenheit 451'
+    expect(book.author_name).must_equal 'Ray Bradbury'
+    expect(book.publication_year).must_equal 1953
   end
 end
