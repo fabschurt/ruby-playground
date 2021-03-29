@@ -20,6 +20,7 @@ describe 'An `Enumerator` object' do
   it 'is returned when calling most `Enumerable` methods without passing a block' do
     ary = []
 
+    _(ary.to_enum).must_be_instance_of Enumerator
     _(ary.each).must_be_instance_of Enumerator
     _(ary.map).must_be_instance_of Enumerator
     _(ary.filter).must_be_instance_of Enumerator
@@ -57,5 +58,13 @@ describe 'An `Enumerator` object' do
     # infinite range, hence blocking execution and filling the RAM up to crashing the OS.
     _(infinite_range.lazy.zip([2, 4, 6]).first(3)).must_equal [[0, 2], [1, 4], [2, 6]]
     _(infinite_range.lazy.zip([2, 4, 6]).take(2).force).must_equal [[0, 2], [1, 4]]
+  end
+
+  it 'can be chained' do
+    chained_enum = [5, 6].to_enum + [4, 9].to_enum
+
+    _(chained_enum).must_be_kind_of Enumerator
+    _(chained_enum.to_a).must_equal [5, 6, 4, 9]
+    _(chained_enum.chain([1, 5].to_enum).to_a).must_equal [5, 6, 4, 9, 1, 5]
   end
 end
