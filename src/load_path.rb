@@ -13,6 +13,6 @@ describe 'Class loading' do
 
     Scout.new
 
-    $LOAD_PATH.pop # restore original load path
+    $LOAD_PATH.pop # Restores the original load path and avoids messing with global state.
   end
 end
