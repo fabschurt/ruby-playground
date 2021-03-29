@@ -127,6 +127,17 @@ describe 'The `Class` class' do
     expect(some_dog).must_be_kind_of Animal
   end
 
+  it 'provides a `#===` method for type matching' do
+    chase = Dog.new
+
+    # Note that you can’t invert the order of the operands here, because `===` is just some syntactic sugar for calling
+    # `#===` on the left-hand operand.
+    assert(Dog === chase)
+    assert(Animal === chase)
+    refute(chase === Dog)
+    refute(Mathematics === chase)
+  end
+
   it 'can be instantiated' do
     rex = Dog.new
 
