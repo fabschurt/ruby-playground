@@ -1,0 +1,16 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - '**'
+jobs:
+  tests:
+    runs-on: ubuntu-20.04
+    container:
+      image: ruby:3.0.0-alpine3.13
+    steps:
+      - uses: actions/checkout@v2
+      - run: rake
