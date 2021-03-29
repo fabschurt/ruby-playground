@@ -13,8 +13,8 @@ describe 'Looping' do
       j += 1
     end
 
-    _(i).must_equal 10
-    _(j).must_equal 5
+    expect(i).must_equal 10
+    expect(j).must_equal 5
   end
 
   it 'can be inlined' do
@@ -24,8 +24,8 @@ describe 'Looping' do
     i += 1 while i < 3
     j += 2 until j == 10
 
-    _(i).must_equal 3
-    _(j).must_equal 10
+    expect(i).must_equal 3
+    expect(j).must_equal 10
   end
 
   it 'can be a good old `for` loop' do
@@ -35,7 +35,7 @@ describe 'Looping' do
       i += x
     end
 
-    _(i).must_equal 10
+    expect(i).must_equal 10
   end
 end
 
@@ -49,7 +49,7 @@ describe 'A `loop` block' do
       break if i % 3 == 0
     end
 
-    _(i).must_equal 3
+    expect(i).must_equal 3
   end
 
   it 'converts a `StopIteration` error to a break' do
@@ -58,7 +58,7 @@ describe 'A `loop` block' do
     seq.next
     seq.next
 
-    _{ seq.next }.must_raise StopIteration
+    expect { seq.next }.must_raise StopIteration
 
     seq.rewind
 

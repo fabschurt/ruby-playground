@@ -57,7 +57,7 @@ describe 'Function pipelining' do
   }
 
   it 'can be used with `Kernel#then`' do
-    _(
+    expect(
       LOREM
         .then(&extract_words)
         .then(&filter_out_empty_words)
@@ -79,6 +79,6 @@ describe 'Function pipelining' do
       cleanup_grouped_words >>
       sort_grouped_words
 
-    _(pipeline.call(LOREM)).must_equal expected
+    expect(pipeline.call(LOREM)).must_equal expected
   end
 end

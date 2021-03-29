@@ -4,6 +4,6 @@ def get_block_class(&block) = block_given? ? block.class : nil
 
 describe 'Blocks and procs' do
   it 'is the same' do
-    _(get_block_class { nil }).must_be_same_as Proc
+    expect(get_block_class { nil }).must_be_same_as Proc
   end
 end
