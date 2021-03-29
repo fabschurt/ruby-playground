@@ -59,4 +59,16 @@ describe 'A self-validating entity' do
     expect(book.author_name).must_equal 'Ray Bradbury'
     expect(book.publication_year).must_equal 1953
   end
+
+  it 'accepts a destructured hash as input' do
+    book = Book.new(**{
+      title: 'The Fellowship of the Ring',
+      author_name: 'J. R. R. Tolkien',
+      publication_date: Date.new(1954, 07, 29),
+    })
+
+    expect(book.title).must_equal 'The Fellowship of the Ring'
+    expect(book.author_name).must_equal 'J. R. R. Tolkien'
+    expect(book.publication_year).must_equal 1954
+  end
 end
