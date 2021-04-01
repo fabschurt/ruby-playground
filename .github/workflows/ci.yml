@@ -13,4 +13,4 @@ jobs:
       image: ruby:3.0.0-alpine3.13
     steps:
       - uses: actions/checkout@v2
-      - run: rake
+      - run: rake test
