@@ -3,7 +3,7 @@ require 'minitest/autorun'
 module Animal
   def exist = 'I am.'
 
-  def cry
+  def make_sound
     raise NotImplementedError
   end
 
@@ -23,7 +23,7 @@ end
 class Dog
   include Animal
 
-  def cry = 'Bark!'
+  def make_sound = 'Bark!'
 end
 
 describe 'The `Module` class' do
@@ -111,13 +111,13 @@ describe 'The `Class` class' do
     Cat = Class.new do
       include Animal
 
-      def cry = 'Meow!'
+      def make_sound = 'Meow!'
     end
 
     skippy = Cat.new
 
     expect(skippy).must_be_instance_of Cat
-    expect(skippy.cry).must_equal 'Meow!'
+    expect(skippy.make_sound).must_equal 'Meow!'
   end
 
   it 'allows for matching the type of the class but also the module' do
