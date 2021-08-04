@@ -1,33 +1,5 @@
 require 'minitest/autorun'
 
-LOREM = <<~TXT
-  Lorem ipsum dolor sed amet, consectetur adipiscing dolor.
-  Sed, do ipsum tempor incididunt do: labore do dolore magna aliqua!
-TXT
-
-EXPECTED_RESULT = {
-  3 => [
-    'do',
-  ],
-  2 => [
-    'ipsum',
-    'dolor',
-    'sed',
-  ],
-  1 => [
-    'lorem',
-    'amet',
-    'consectetur',
-    'adipiscing',
-    'tempor',
-    'incididunt',
-    'labore',
-    'dolore',
-    'magna',
-    'aliqua',
-  ],
-}
-
 extract_words = ->(str) { str.split(/\W+/) }
 
 filter_out_empty_words = ->(words) {
@@ -56,9 +28,37 @@ sort_grouped_words = ->(grouped_words) {
 }
 
 describe 'Function pipelining' do
+  INPUT = <<~LOREM
+    Lorem ipsum dolor sed amet, consectetur adipiscing dolor.
+    Sed, do ipsum tempor incididunt do: labore do dolore magna aliqua!
+  LOREM
+
+  EXPECTED_OUTPUT = {
+    3 => [
+      'do',
+    ],
+    2 => [
+      'ipsum',
+      'dolor',
+      'sed',
+    ],
+    1 => [
+      'lorem',
+      'amet',
+      'consectetur',
+      'adipiscing',
+      'tempor',
+      'incididunt',
+      'labore',
+      'dolore',
+      'magna',
+      'aliqua',
+    ],
+  }
+
   it 'can be used with `Kernel#then`' do
     expect(
-      LOREM
+      INPUT
         .then(&extract_words)
         .then(&filter_out_empty_words)
         .then(&downcase_words)
@@ -66,7 +66,7 @@ describe 'Function pipelining' do
         .then(&group_words_by_count)
         .then(&cleanup_grouped_words)
         .then(&sort_grouped_words)
-    ).must_equal EXPECTED_RESULT
+    ).must_equal EXPECTED_OUTPUT
   end
 
   it 'can be used with `Proc#>>`' do
@@ -79,6 +79,6 @@ describe 'Function pipelining' do
       cleanup_grouped_words >>
       sort_grouped_words
 
-    expect(pipeline.call(LOREM)).must_equal EXPECTED_RESULT
+    expect(pipeline.call(INPUT)).must_equal EXPECTED_OUTPUT
   end
 end

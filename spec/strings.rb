@@ -2,18 +2,18 @@ require 'minitest/autorun'
 
 describe String do
   it 'can be formatted with the `%` syntax' do
-    variables = ['Jack', 32, 'engineer']
+    vars = ['Jack', 32, 'engineer']
 
     expect(
-      'Hi, I’m %s, I’m a %d-year-old %s.' % variables
+      'Hi, I’m %s, I’m a %d-year-old %s.' % vars
     ).must_equal 'Hi, I’m Jack, I’m a 32-year-old engineer.'
   end
 
   it 'can be formatted with `Kernel#format` or `Kernel#sprintf`' do
-    variables = ['pie', Math::PI]
+    vars = ['pie', Math::PI]
 
     expect(
-      sprintf('Do you like apple %s? No, I prefer apple %.2f.', *variables)
+      sprintf('Do you like apple %s? No, I prefer apple %.2f.', *vars)
     ).must_equal 'Do you like apple pie? No, I prefer apple 3.14.'
 
     expect(method(:sprintf)).must_equal method(:format)
