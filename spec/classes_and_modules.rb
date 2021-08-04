@@ -27,7 +27,7 @@ class Dog
 end
 
 describe 'The `Module` class' do
-  it 'can be reopened (keeping the inheritance chain consistent)' do
+  it 'can be reopened (immediately updating the lookup chain)' do
     lassie = Dog.new
 
     module Animal
@@ -44,12 +44,11 @@ describe 'The `Module` class' do
       def self.none = :no_animal
     end
 
-
     expect(Animal.all).must_equal :every_animal_on_the_planet
     expect(Animal.none).must_equal :no_animal
   end
 
-  it 'can be anonymously defined (inlined)' do
+  it 'can be anonymous/inline' do
     Bird = Module.new do
       def fly = '*Flap flap flap!*'
     end
@@ -65,7 +64,7 @@ describe 'The `Module` class' do
 
   it 'can have methods that are both instance and class methods' do
     expect(Animal.exist).must_equal 'I am.'
-    expect(Dog.new.send(:exist)).must_equal 'I am.'
+    expect(Dog.new.send(:exist)).must_equal 'I am.' # The instance version is made private by default, so we need to use `Object#send` here.
   end
 
   it 'can extend itself to act as a library of functions' do
@@ -107,7 +106,7 @@ describe 'The `Class` class' do
     expect(Dog.none).must_equal []
   end
 
-  it 'can be anonymously defined (inlined)' do
+  it 'can be anonymous/inline' do
     Cat = Class.new do
       include Animal
 
@@ -136,6 +135,14 @@ describe 'The `Class` class' do
     assert(Animal === chase)
     refute(chase === Dog)
     refute(Mathematics === chase)
+
+    chase_type =
+      case chase # `case` uses `#===` for comparison
+        when Mathematics then :maths
+        when Dog then :dog
+      end
+
+    expect(chase_type).must_equal(:dog)
   end
 
   it 'can be instantiated' do

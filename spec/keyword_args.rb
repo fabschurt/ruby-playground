@@ -11,7 +11,7 @@ describe 'Keyword argument passing' do
     expect { build_hash(arg2: 'foo', arg3: 'bar', arg4: 'argh') }.must_raise ArgumentError
   end
 
-  it 'accepts only the right number of arguments' do
+  it 'accepts only the correct number of arguments' do
     hash = build_hash(arg2: 42, arg3: 'foo')
 
     expect(hash[:a]).must_equal 5
