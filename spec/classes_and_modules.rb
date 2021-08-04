@@ -130,8 +130,8 @@ describe 'The `Class` class' do
   it 'provides a `#===` method for type matching' do
     chase = Dog.new
 
-    # Note that you can’t invert the order of the operands here, because `===` is just some syntactic sugar for calling
-    # `#===` on the left-hand operand.
+    # Note that you can’t invert the order of the operands here, because `===`
+    # is just some syntactic sugar for calling `#===` on the left-hand operand.
     assert(Dog === chase)
     assert(Animal === chase)
     refute(chase === Dog)

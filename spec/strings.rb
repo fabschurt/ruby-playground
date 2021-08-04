@@ -21,7 +21,7 @@ describe 'A `String` object' do
   end
 
   it 'can be formatted with named placeholders' do
-    vars = {name: 'Robert', age: 54.556}
+    vars = { name: 'Robert', age: 54.556 }
 
     expect('Hi, I’m %{name}, and I’m %{age}-year old.' % vars).must_equal 'Hi, I’m Robert, and I’m 54.556-year old.'
     expect(sprintf('%<name>s is my name, and %<age>.1f is my age', vars)).must_equal 'Robert is my name, and 54.6 is my age'

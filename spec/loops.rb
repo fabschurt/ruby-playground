@@ -65,5 +65,7 @@ describe 'A `loop` block' do
     loop do
       seq.next
     end
+
+    expect { seq.next }.must_raise StopIteration
   end
 end

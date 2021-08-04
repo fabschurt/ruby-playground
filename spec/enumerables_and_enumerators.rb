@@ -8,7 +8,7 @@ describe 'An `Enumerable` object' do
   end
 
   it 'can be converted to a hash' do
-    expect([[:a, 5], [:b, 6], [:c, 12]].to_h).must_equal({a: 5, b: 6, c: 12})
+    expect([[:a, 5], [:b, 6], [:c, 12]].to_h).must_equal({ a: 5, b: 6, c: 12 })
   end
 
   it 'can be converted to a set' do
@@ -54,8 +54,9 @@ describe 'An `Enumerator` object' do
   it 'can be lazy' do
     infinite_range = (0..) # Equivalent to `(0..Float.INFINITY)`.
 
-    # Without using `Enumerable#lazy` here, the implementation of `Enumerable#zip` would dictate iterating the whole
-    # infinite range, hence blocking execution and filling the RAM up to crashing the OS.
+    # Without using `Enumerable#lazy` here, the implementation of `Enumerable#zip`
+    # would dictate iterating the whole infinite range, hence blocking execution
+    # and filling the RAM up to crashing the OS.
     expect(infinite_range.lazy.zip([2, 4, 6]).first(3)).must_equal [[0, 2], [1, 4], [2, 6]]
     expect(infinite_range.lazy.zip([2, 4, 6]).take(2).force).must_equal [[0, 2], [1, 4]]
   end

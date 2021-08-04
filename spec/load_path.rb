@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 
-SRC_PATH = File.expand_path(File.dirname(__FILE__))
+LIB_PATH = File.expand_path(File.dirname(File.dirname(__FILE__)))
 
 describe 'Class loading' do
   it 'fails if class is not discoverable' do
@@ -8,10 +8,10 @@ describe 'Class loading' do
   end
 
   it 'succeeds once the class is added to the load path' do
-    $LOAD_PATH.push(SRC_PATH)
+    $LOAD_PATH.push(LIB_PATH)
     require 'lib/Character/Scout'
 
-    Scout.new
+    expect(Scout.new.fight).must_equal 'Farewell…'
 
     $LOAD_PATH.pop # Restores the original load path and avoids messing with global state.
   end
