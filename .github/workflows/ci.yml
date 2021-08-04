@@ -11,8 +11,7 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-20.04
-    container:
-      image: ruby:3.0.0-alpine3.13
     steps:
       - uses: actions/checkout@v2
-      - run: rake test
+      - run: make build
+      - run: make test

@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 
-def build_hash(arg1: 5, arg2:, arg3:) = {a: arg1, b: arg2, c: arg3}
+def build_hash(arg1: 5, arg2:, arg3:) = { a: arg1, b: arg2, c: arg3 }
 
 describe 'Keyword argument passing' do
   it 'fails if an argument is missing' do

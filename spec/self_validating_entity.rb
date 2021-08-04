@@ -44,8 +44,16 @@ end
 describe 'A self-validating entity' do
   it 'fails when crappy args are passed to its constructor' do
     expect { Book.new(crap: false) }.must_raise ArgumentError
-    expect { Book.new(42, 'Jack London', 3444) }.must_raise ArgumentError
-    expect { Book.new('Fight Club', 'Some dude with a weird name', Date.new(1996, 8, 17)) }.must_raise ArgumentError
+  end
+
+  it 'only accepts keyword constructor arguments' do
+    expect {
+      Book.new(
+        'Fight Club',
+        'Some dude with a weird name',
+        Date.new(1996, 8, 17),
+      )
+    }.must_raise ArgumentError
   end
 
   it 'validates itself upon initialization' do
