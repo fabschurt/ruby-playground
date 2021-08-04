@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 
-describe 'A `String` object' do
+describe String do
   it 'can be formatted with the `%` syntax' do
     variables = ['Jack', 32, 'engineer']
 
