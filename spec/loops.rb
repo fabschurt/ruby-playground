@@ -52,7 +52,7 @@ describe 'A `loop` block' do
     expect(i).must_equal 3
   end
 
-  it 'converts a `StopIteration` error to a break' do
+  it 'translates a `StopIteration` error to a break' do
     seq = [1, 2].cycle(1)
 
     seq.next
