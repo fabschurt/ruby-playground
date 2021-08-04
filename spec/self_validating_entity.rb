@@ -41,7 +41,7 @@ class Book
   end
 end
 
-describe 'A self-validating entity' do
+describe Book do
   it 'fails when crappy args are passed to its constructor' do
     expect { Book.new(crap: false) }.must_raise ArgumentError
   end

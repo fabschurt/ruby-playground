@@ -26,7 +26,7 @@ class Dog
   def make_sound = 'Bark!'
 end
 
-describe 'The `Module` class' do
+describe Module do
   it 'can be reopened (immediately updating the lookup chain)' do
     lassie = Dog.new
 
@@ -80,7 +80,7 @@ describe 'The `Module` class' do
   end
 end
 
-describe 'The `Class` class' do
+describe Class do
   it 'extends from the `Module` class' do
     expect(Class.superclass).must_be_kind_of Module
   end

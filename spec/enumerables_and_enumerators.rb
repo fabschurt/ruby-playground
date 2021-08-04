@@ -1,7 +1,7 @@
 require 'set'
 require 'minitest/autorun'
 
-describe 'An `Enumerable` object' do
+describe Enumerable do
   it 'can be zipped with another enumerable' do
     expect(['a', 'b', 'c'].zip([2, 6, 9])).must_equal [['a', 2], ['b', 6], ['c', 9]]
     expect(['a', 'b', 'c'].zip([2])).must_equal [['a', 2], ['b', nil], ['c', nil]]
@@ -16,7 +16,7 @@ describe 'An `Enumerable` object' do
   end
 end
 
-describe 'An `Enumerator` object' do
+describe Enumerator do
   it 'is returned when calling most `Enumerable` methods without passing a block' do
     ary = []
 
