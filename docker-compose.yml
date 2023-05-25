@@ -6,3 +6,5 @@ services:
       context: .
     volumes:
       - .:/home/ruby/run
+    deploy:
+      replicas: 0
