@@ -5,4 +5,4 @@ services:
     build:
       context: .
     volumes:
-      - .:/usr/run
+      - .:/home/ruby/run
