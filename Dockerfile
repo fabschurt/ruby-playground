@@ -1,9 +1,8 @@
-FROM ruby:3.0.2-alpine3.14
+FROM ruby:3.2.2-alpine3.18
 
 RUN \
-  adduser -D -u 1000 -s /bin/false -g '' ruby && \
-  mkdir /usr/run && \
-  chown ruby /usr/run
+  adduser -D -u 1000 -s /sbin/nologin -g '' ruby && \
+  mkdir /home/ruby/run
 
-WORKDIR /usr/run
+WORKDIR /home/ruby/run
 USER ruby
