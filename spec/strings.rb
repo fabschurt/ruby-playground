@@ -35,11 +35,11 @@ describe String do
     words = %w(earth wind fire transparent_liquid_stuff)
     max_length = words.map { |word| word.length }.max
 
-    expect {
-      puts words
+    expect(
+      words
         .map { |word| word.rjust(max_length, '-') }
         .join("\n")
-    }.must_output <<~STR
+    ).must_equal <<~STR.chomp
       -------------------earth
       --------------------wind
       --------------------fire
